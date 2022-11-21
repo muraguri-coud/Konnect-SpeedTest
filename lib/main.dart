@@ -8,6 +8,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:gauges/gauges.dart';
 
 import 'package:konnect_speed_test/speed_test_lib.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
@@ -44,268 +45,237 @@ class _SpeedTestAppState extends State<SpeedTestApp> with SpeedtestHandler {
       home: Scaffold(
         body: SafeArea(
           child: Container(
+
           //  color: Colors.red,
             margin: const EdgeInsets.all(5),
             width: double.infinity,
-            child: Column(
-              children: [
-            
-                Container(
-                
-                  alignment: Alignment.center,
-                  height: 130,
-                  color: const Color(0xffffbd35),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Neumorphic(
-                            style: NeumorphicStyle(
-                              shape: NeumorphicShape.concave,
-                              boxShape: NeumorphicBoxShape.roundRect(
-                                  BorderRadius.circular(12)),
-                              depth: 8,
-                              lightSource: LightSource.topLeft,
-                              color: const Color(0xffffbd35),
-                            ),
-                            child: Container(
-                                width: 70,
-                                // height: 20,
-                
-                                margin: const EdgeInsets.all(5),
-                                color: const Color(0xffffbd35),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    const Text("Jitter"),
-                                    Text(" ${jitter}"),
-                                  ],
-                                )),
-                          ),
-                          Neumorphic(
-                            style: NeumorphicStyle(
-                              shape: NeumorphicShape.concave,
-                              boxShape: NeumorphicBoxShape.roundRect(
-                                  BorderRadius.circular(12)),
-                              depth: 8,
-                              lightSource: LightSource.topLeft,
-                              color: const Color(0xffffbd35),
-                            ),
-                            child: Container(
-                              width: 70,
-                              // height: 20,
-                               margin: const EdgeInsets.all(5),
-                              color: const Color(0xffffbd35),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  const Text("Ping"),
-                                  Text(" ${ping}"),
-                                ],
-                              ),
-                            ),
-                          ),
-           
-                        ],
-                      ),
-                
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          isStated
-                              ? const Gauge()
-                              : Column(
-                                                          mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    padding: const EdgeInsets.all(2),
-                                    margin: const EdgeInsets.only(bottom: 10),
-                                    child: const Text("Konnect Speed Test",
-                                          style: TextStyle(
-                                              fontSize: 10.0,
-                                              fontWeight: FontWeight.bold)),
-                                  ),
-                                  Neumorphic(
-                                      style: NeumorphicStyle(
-                                        border: const NeumorphicBorder(
-                                            isEnabled: true,
-                                            color: Colors.white,
-                                            width: 0.8),
-                                        shape: NeumorphicShape.concave,
-                                        boxShape: NeumorphicBoxShape.roundRect(
-                                            BorderRadius.circular(50)),
-                                        depth: 8,
-                                        lightSource: LightSource.topLeft,
-                                        color: const Color(0xffffbd35),
-                                      ),
-                                      child: Container(
-                                        //  color: Colors.red,
-                                        width: 100,
-                                        height: 100,
-                
-                                        child: TextButton(
-                                            onPressed: () {
-                                              speedTest.start();
-                                              setState(() {
-                                                isStated = !isStated;
-                                              });
-                                            },
-                                            child: const Text(
-                                              "GO",
-                                              style: TextStyle(
-                                                  fontSize: 30,
-                                                  color: Colors.white),
-                                            )),
-                                      ),
-                                    ),
-                                ],
-                              )
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Neumorphic(
-                            style: NeumorphicStyle(
-                              shape: NeumorphicShape.concave,
-                              boxShape: NeumorphicBoxShape.roundRect(
-                                  BorderRadius.circular(12)),
-                              depth: 8,
-                              lightSource: LightSource.topLeft,
-                              color: const Color(0xffffbd35),
-                            ),
-                            child: Container(
-                                 //margin: const EdgeInsets.only(bottom: 10),
-
-                                width: 70,
-                                margin: const EdgeInsets.all(5),
-                
-                                // margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                color: const Color(0xffffbd35),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    const Text("Upload "),
-                                    Text(" $upload mbps"),
-                                  ],
-                                )),
-                          ),
-                          Neumorphic(
-                            style: NeumorphicStyle(
-                              shape: NeumorphicShape.concave,
-                              boxShape: NeumorphicBoxShape.roundRect(
-                                  BorderRadius.circular(12)),
-                              depth: 8,
-                              lightSource: LightSource.topLeft,
-                              color: const Color(0xffffbd35),
-                            ),
-                            child: Container(
-                                width: 70,
-                                margin: const EdgeInsets.all(5),
-                                //  margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                // height: 20,
-                
-                                // height: 20,
-                
-                                //  margin: EdgeInsets.fromLTRB(left, top, right, bottom),
-                                color: const Color(0xffffbd35),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    const Text(" Download"),
-                                    Text(" ${download} mbps"),
-                                  ],
-                                )),
-                          ),
-                 
-                          
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                  Neumorphic(
-                        style: NeumorphicStyle(
-                    shape: NeumorphicShape.concave,
-                    boxShape:
-                        NeumorphicBoxShape.roundRect(BorderRadius.circular(0)),
-                    depth: 10,
-                    lightSource: LightSource.topLeft,
+            child: Container(
+              height: 160,
+             // color: Colors.red,
+              child: Column(
+                children: [
+              
+                  Container(
+                  
+                    alignment: Alignment.center,
+                    height: 130,
                     color: const Color(0xffffbd35),
-                  ),
-                    child: Container(
-                      margin: EdgeInsets.only(top: 1),
-                      child: Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
                             Neumorphic(
-                          style: NeumorphicStyle(
-                            shape: NeumorphicShape.concave,
-                            boxShape: NeumorphicBoxShape.roundRect(
-                                BorderRadius.circular(12)),
-                            depth: 10,
-                            lightSource: LightSource.topLeft,
-                            color: const Color(0xffffbd35),
-                          ),
-                          child: Container(
-                            
-                            
-                              width: 120,
-                              // height: 20,
-                    
-                              margin: const EdgeInsets.all(5),
-                              color: const Color(0xffffbd35),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  const Text("Server"),
-                                  Text(" ${jitter}"),
-                                ],
-                              )),
-                        ),
+                              style: NeumorphicStyle(
+                                shape: NeumorphicShape.concave,
+                                boxShape: NeumorphicBoxShape.roundRect(
+                                    BorderRadius.circular(8)),
+                                depth: 4,
+                                lightSource: LightSource.topLeft,
+                                color: const Color(0xffffbd35),
+                              ),
+                              child: Container(
+                                  width: 70,
+                                  // height: 20,
+                  
+                                  margin: const EdgeInsets.all(5),
+                                  color: const Color(0xffffbd35),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      const Text("Jitter",
+                                        style: TextStyle(
+                                             color: Colors.black)),
+                                      Text(" ${jitter}",
+                                          style: TextStyle(color: Colors.black)),
+                                    ],
+                                  )),
+                            ),
                             Neumorphic(
-                          style: NeumorphicStyle(
-                            shape: NeumorphicShape.concave,
-                            boxShape: NeumorphicBoxShape.roundRect(
-                                BorderRadius.circular(12)),
-                            depth: 10,
-                            lightSource: LightSource.topLeft,
-                            color: const Color(0xffffbd35),
-                          ),
-                          child: Container(
-                              width: 120,
-                             // height: 20,
-                              // height: 20,
-                                          
-                              margin: const EdgeInsets.all(5),
-                              color: const Color(0xffffbd35),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  const Text("Provider"),
-                                  Text(" ${jitter}"),
-                                ],
-                              )),
+                              style: NeumorphicStyle(
+                                shape: NeumorphicShape.concave,
+                                boxShape: NeumorphicBoxShape.roundRect(
+                                    BorderRadius.circular(8)),
+                                depth: 4,
+                                lightSource: LightSource.topLeft,
+                                color: const Color(0xffffbd35),
+                              ),
+                              child: Container(
+                                width: 70,
+                                // height: 20,
+                                 margin: const EdgeInsets.all(5),
+                                color: const Color(0xffffbd35),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    const Text("Ping",
+                                        style: TextStyle(color: Colors.black)),
+                                    Text(" ${ping}",
+                                        style: TextStyle(color: Colors.black)),
+                                  ],
+                                ),
+                              ),
+                            ),
+           
+                          ],
                         ),
+                  
+                        // SizedBox(
+                        //   height: 10,
+                        // ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            isStated
+                                ? const Gauge()
+                                : Column(
+                                                            mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.center,
+                                     // padding: const EdgeInsets.all(2),
+                                      margin: const EdgeInsets.only(bottom: 10),
+                                      child: const Text("Konnect Speed Test",
+                                            style: TextStyle(color:Colors.black,
+                                                fontSize: 10.0,
+                                                fontWeight: FontWeight.bold),),
+                                    ),
+                                    Neumorphic(
+                                      margin: EdgeInsets.only(bottom: 3),
+                                        style: NeumorphicStyle(
+                                          border: const NeumorphicBorder(
+                                              isEnabled: true,
+                                              color: Colors.white,
+                                              width: 0.8),
+                                          shape: NeumorphicShape.concave,
+                                          boxShape: NeumorphicBoxShape.roundRect(
+                                              BorderRadius.circular(50)),
+                                          depth: 4,
+                                          lightSource: LightSource.topLeft,
+                                          color: const Color(0xffffbd35),
+                                        ),
+                                        child: Container(
+                                         // margin: EdgeInsets.only(bottom: 3),
+                                           // color: Colors.red,
+                                          width: 100,
+                                          height: 100,
+                  
+                                          child: TextButton(
+                                              onPressed: () {
+                                                speedTest.start();
+                                                setState(() {
+                                                  isStated = !isStated;
+                                                });
+                                              },
+                                              child: const Text(
+                                                "GO",
+                                                style: TextStyle(
+                                                    fontSize: 30,
+                                                    color: Colors.white),
+                                              )),
+                                        ),
+                                      ),
+                                  ],
+                                )
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Neumorphic(
+                              style: NeumorphicStyle(
+                                shape: NeumorphicShape.concave,
+                                boxShape: NeumorphicBoxShape.roundRect(
+                                    BorderRadius.circular(8)),
+                                depth: 4,
+                                lightSource: LightSource.topLeft,
+                                color: const Color(0xffffbd35),
+                              ),
+                              child: Container(
+                                   //margin: const EdgeInsets.only(bottom: 10),
+
+                                  width: 70,
+                                  margin: const EdgeInsets.all(5),
+                  
+                                  // margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                  //color: const Color(0xffffbd35),
+                                  //color: Colors.red,
+                                  child: Column(
+                                    
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      const Text("Upload ",
+                                          style: TextStyle(color: Colors.black)),
+                                      Text(" $upload mbps",
+                                        style: TextStyle(
+                                             color: Colors.black)),
+                                    ],
+                                  )),
+                            ),
+                            Neumorphic(
+                              style: NeumorphicStyle(
+                                shape: NeumorphicShape.concave,
+                                boxShape: NeumorphicBoxShape.roundRect(
+                                    BorderRadius.circular(8)),
+                                depth: 4,
+                                lightSource: LightSource.topLeft,
+                                color: const Color(0xffffbd35),
+                              ),
+                              child: Container(
+                                  width: 70,
+                                  margin: const EdgeInsets.all(5),
+                                  //  margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                  // height: 20,
+                  
+                                  // height: 20,
+                  
+                                  //  margin: EdgeInsets.fromLTRB(left, top, right, bottom),
+                                  color: const Color(0xffffbd35),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      const Text(" Download",
+                                        style: TextStyle(
+                                             color: Colors.black),
+                                      ),
+                                      Text(" ${download} mbps",
+                                        style: TextStyle(
+                                             color: Colors.black)),
+                                    ],
+                                  )),
+                            ),
+                   
+                            
+                          ],
+                        )
                       ],
                     ),
-                     color: const Color(0xffffbd35),
-                    height: 50,
-                                  ),
                   ),
-              ],
+                    Container(
+                      color:  const Color(0xffffbd35),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                           const Text("Server" ,style: TextStyle(
+                                                    //fontSize: 30,
+                                                    color: Colors.black,fontStyle: FontStyle.italic,),),
+                        Text(" ${jitter}",
+                                        style: TextStyle(
+                                             color: Colors.black)),
+                                     
+                      ],
+                                        ),
+                    ),
+                ],
+              ),
             ),
           ),
         ),
@@ -395,46 +365,80 @@ class Gauge extends StatelessWidget {
         height: 100,
         width: 100,
         color: const Color(0xffffbd35),
-        child: SfRadialGauge(
-            title: const GaugeTitle(
-                text: 'Konnect SpeedTest',
-                textStyle: TextStyle(
-                    fontSize: 10.0, fontWeight: FontWeight.bold)),
-            axes: <RadialAxis>[
-              RadialAxis(minimum: 0, maximum: 10, ranges: <GaugeRange>[
-                GaugeRange(
-                    startValue: 0,
-                    endValue: 3,
+        child: RadialGauge(
+            axes: [
+              RadialGaugeAxis(
+                
+                 minValue: -100,
+                maxValue: 100,
+                minAngle: -150,
+                maxAngle: 150,
+                radius: 0.6,
+                width: 0.2,
+                
+                color: Colors.transparent,
+                //ticks: ,
+                // ...
+                segments: [
+                  RadialGaugeSegment(
+                    minValue: 0,
+                    maxValue: 20,
+                    minAngle: -150,
+                    maxAngle: -130,
                     color: Colors.red,
-                    startWidth: 10,
-                    endWidth: 10),
-                GaugeRange(
-                    startValue: 3,
-                    endValue: 6,
+                  ),
+                  RadialGaugeSegment(
+                    minValue: 20,
+                    maxValue: 40,
+                    minAngle: -120,
+                    maxAngle: -90,
                     color: Colors.orange,
-                    startWidth: 10,
-                    endWidth: 10),
-                GaugeRange(
-                    startValue: 6,
-                    endValue: 10,
-                    color: Colors.green,
-                    startWidth: 10,
-                    endWidth: 10)
-              ], pointers: <GaugePointer>[
-                const NeedlePointer(
-                  value: 9,
-                //  tailStyle: TailStyle(color: Colors.white),
-                )
-              ], annotations: <GaugeAnnotation>[
-                GaugeAnnotation(
-                    widget: Container(
-                        child: const Text('9 mbs',
-                            style: TextStyle(
-                                fontSize: 10, fontWeight: FontWeight.bold))),
-                    angle: 90,
-                    positionFactor: 0.9)
-              ])
-            ]),
+                  ),
+                  // ...
+                ],
+              ),
+            ],
+          )
+        // SfRadialGauge(
+        //     title: const GaugeTitle(
+        //         text: 'Konnect SpeedTest',
+        //         textStyle: TextStyle(
+        //             fontSize: 10.0, fontWeight: FontWeight.bold)),
+        //     axes: <RadialAxis>[
+        //       RadialAxis(minimum: 0, maximum: 10, ranges: <GaugeRange>[
+        //         GaugeRange(
+        //             startValue: 0,
+        //             endValue: 3,
+        //             color: Colors.red,
+        //             startWidth: 10,
+        //             endWidth: 10),
+        //         GaugeRange(
+        //             startValue: 3,
+        //             endValue: 6,
+        //             color: Colors.orange,
+        //             startWidth: 10,
+        //             endWidth: 10),
+        //         GaugeRange(
+        //             startValue: 6,
+        //             endValue: 10,
+        //             color: Colors.green,
+        //             startWidth: 10,
+        //             endWidth: 10)
+        //       ], pointers: <GaugePointer>[
+        //         const NeedlePointer(
+        //           value: 9,
+        //         //  tailStyle: TailStyle(color: Colors.black),
+        //         )
+        //       ], annotations: <GaugeAnnotation>[
+        //         GaugeAnnotation(
+        //             widget: Container(
+        //                 child: const Text('9 mbs',
+        //                     style: TextStyle(
+        //                         fontSize: 10, fontWeight: FontWeight.bold))),
+        //             angle: 90,
+        //             positionFactor: 0.9)
+        //       ])
+        //     ]),
       ),
     );
   }
